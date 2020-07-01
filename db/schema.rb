@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 2020_07_01_194149) do
   end
 
   create_table "voters", force: :cascade do |t|
-    t.text "fist_name"
+    t.text "first_name"
     t.text "last_name"
     t.text "address"
     t.date "birth_date"
     t.text "state"
     t.text "city"
     t.integer "zip"
-    t.integer "registaration_status"
+    t.integer "registration_status"
     t.boolean "permanent_absentee"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
