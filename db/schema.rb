@@ -10,9 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_07_01_194149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
+  create_table "voters", force: :cascade do |t|
+    t.text "fist_name"
+    t.text "last_name"
+    t.text "address"
+    t.date "birth_date"
+    t.text "state"
+    t.text "city"
+    t.integer "zip"
+    t.integer "registaration_status"
+    t.boolean "permanent_absentee"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
