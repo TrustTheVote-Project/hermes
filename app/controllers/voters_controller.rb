@@ -24,6 +24,11 @@ class VotersController < ApplicationController
     end
   end
 
+  def import
+    puts params["file"].read
+    Voter.import_from_csv(params["file"].read)
+  end
+
   # PATCH/PUT /voters/1
   def update
     if @voter.update(voter_params)
@@ -44,8 +49,8 @@ class VotersController < ApplicationController
       @voter = Voter.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    # Only allow a trusted parameter "allow list" through.
     def voter_params
-      params.require(:voter).permit(:fist_name, :last_name, :address, :birth_date, :state, :city, :zip, :registaration_status, :permanent_absentee)
+      params.require(:voter).permit(:fist_name, :last_name, :address, :birth_date, :state, :city, :zip, :registaration_status, :permanent_absentee, :file)
     end
 end

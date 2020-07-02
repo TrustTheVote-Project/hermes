@@ -3,7 +3,8 @@ class Voter < ApplicationRecord
 
   def self.import_from_csv(file)
     voters = []
-    CSV.foreach(file, headers: true) do |row|
+    csv = CSV.new(file, headers: true)
+    csv.each do |row|
       voters << row.to_h
     end
     self.import(voters)

@@ -82,6 +82,15 @@ RSpec.describe "/voters", type: :request do
     end
   end
 
+  describe "POST /import" do
+    it "can import a csv" do
+      file = fixture_file_upload('files/sampe_voters_import.csv', 'text/csv')
+      post "/voters/import", params: { file: file }
+      expect(response.status).to be 204
+    end
+  end
+
+
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
