@@ -1,52 +1,10 @@
-first_name,last_name,address,city,zip,state,birth_date
-Ron,Tsosie,1299 Taylor St,Montgomery,36109,AL,1963-09-28
-Brandie,Nguyen,9015 Fairview St,Wasilla,99654,AK,1946-12-11
-Peggy,Lee,5737 Homestead Rd,Tucson,85718,AZ,1993-11-26
-Russell,Kim,5079 E Pecan St,Little Rock,72209,AK,1989-10-17
-Louella,Williams,568 Forest Ln,Santa Monica,90403,CA,1955-01-20
-Irene,Johnson,8027 Hillcrest Rd,Pueblo,81001,CO,1957-11-05
-Rebecca,Jones,8135 Woodland St,Vernon Rockville,6066,CT,1946-12-22
-Terrence,Brown,2969 Pecan Acres Ln,Washington,20020,DC,1963-05-05
-Mia,Jackson,1067 Oak Lawn Ave,Bear,19701,DE,1996-12-21
-Isaac,Davis,997 Hamilton Ave,Port Orange,32127,FL,1947-06-27
-Marcus,Thomas,5712 White Oak Dr,Augusta,30906,GA,1953-06-09
-Ken,Garcia,4473 Hickory Creek Dr,Captain Cook,96704,HI,1961-11-29
-Isaiah,Hernandez,5406 W Campbell Ave,Pocatello,83204,ID,1993-11-25
-Theodore,Sanchez,9394 Blossom Hill Rd,Lake Zurich,60047,IL,1962-09-30
-Catherine,Medina,7438 W Sherman Dr,Brownsburg,46112,IN,1977-03-01
-Cecil,Flores,1343 Smokey Ln,Ankeny,50023,IA,1979-10-13
-Janna,Rivera,4958 Karen Dr,Derby,67037,KS,1949-12-18
-Angel,Ramos,3591 Saddle Dr,Henderson,42420,KY,1946-08-25
-Ashley,Vargas,5231 Dogwood Ave,Baton Rouge,70806,LA,1958-11-26
-Stacey,Nunez,580 Mcclellan Rd,Bangor,4401,ME,1989-09-06
-Edward,Shaw,7838 Woodland St,Bowie,20715,MD,1978-09-18
-Roy,Silva,1135 Pecan Acres Ln,Watertown,2472,MA,1994-07-15
-Jackson,James,9474 Karen Dr,Davidson,48423,MI,1977-07-13
-Leon,Reyes,7996 Lakeshore Rd,Brainerd,56401,MN,1998-06-08
-Jar,Dunn,2683 Photinia Ave,Ocean Springs,39564,MS,1954-01-22
-Abigail,Jacobs,3429 Country Club Rd,Saint Louis,63109,MO,1971-12-19
-Rhonda,Jordan,4498 Northaven Rd,Butte,59701,MT,1992-11-15
-Letitia,Howard,4699 Green Rd,Grand Island,68801,NE,1994-05-08
-Gertrude,Ruiz,6235 Oak Lawn Ave,Reno,89523,NV,1945-08-24
-Susan,Andrews,2088 W Sherman Dr,Nashua,3060,NH,1956-04-10
-Willie,Watkins,2568 Adams St,Parsippany,7054,NJ,1945-09-05
-Shannon,Ward,3229 Plum St,Albuquerque,87106,NM,1978-11-07
-Guy,Graves,5851 W Belt Line Rd,Massapequa Park,11762,NY,2003-06-01
-George,Woods,1101 Karen Dr,Elizabeth City,27909,NC,1990-07-30
-Daisy,Allen,8766 Dane St,Bismarck,58501,ND,1994-08-09
-Warren,Marshall,4057 Prospect Rd,Hamilton,45011,OH,1945-08-31
-Jayden,Ross,3998 Marsh Ln,Ada,74820,OK,1958-03-27
-Maurice,Long,213 Bollinger Rd,Tualatin,97062,OR,1976-03-25
-Claudine,Fields,929 W Pecan St,Irwin,15642,PA,1978-05-28
-Marilyn,Gardner,1868 Lakeview St,Johnston,2919,RI,1987-09-11
-Darryl,Jensen,5994 Hunters Creek Dr,Hartsville,29550,SC,1947-09-18
-David,Bates,4697 Miller Ave,Rapid City,57701,SD,1980-06-30
-Hallie,Hunt,5656 W Sherman Dr,Oak Ridge,37830,TN,1951-01-18
-Nicholas,Turner,9481 N Stelling Rd,Desoto,75115,TX,1949-02-13
-Elsie,Barnett,9573 Rolling Green Rd,Bountiful,84010,UT,1984-09-20
-Diana,Washington,6117 Paddock Way,Ascutney,5030,VT,1970-08-24
-Victor,Evans,8447 Eason Rd,Fredericksburg,22405,VA,1961-02-05
-Marie,Campbell,4720 Lovers Ln,Wenatchee,98801,WA,1945-03-31
-Pauline,Lynch,8727 Pecan Acres Ln,Clarksburg,26301,WV,1962-02-19
-Toni,Walters,8433 Fairview St,Janesville,53546,WI,1996-02-26
-Marion,Weaver,7059 Marsh Ln,Cheyenne,82002,WY,1952-08-30
+first_name,last_name,address,city,zip,state,birth_date,id
+Ron,Tsosie,1299 Taylor St,Montgomery,36109,AL,1963-09-28,1
+Brandie,Nguyen,9015 Fairview St,Wasilla,99654,AK,1946-12-11,2
+Peggy,Lee,5737 Homestead Rd,Tucson,85718,AZ,1993-11-26,3
+Russell,Kim,5079 E Pecan St,Little Rock,72209,AK,1989-10-17,4
+Louella,Williams,568 Forest Ln,Santa Monica,90403,CA,1955-01-20,5
+Irene,Johnson,8027 Hillcrest Rd,Pueblo,81001,CO,1957-11-05,6
+Rebecca,Jones,8135 Woodland St,Vernon Rockville,6066,CT,1946-12-22,7
+Terrence,Brown,2969 Pecan Acres Ln,Washington,20020,DC,1963-05-05,8
+Mia,Jackson,1067 Oak Lawn Ave,Bear,19701,DE,1996-12-21,9

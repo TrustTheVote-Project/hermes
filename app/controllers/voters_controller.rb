@@ -26,6 +26,8 @@ class VotersController < ApplicationController
 
   def import
     Voter.import_from_csv(params["file"].read)
+  rescue InvalidVoterException => e
+    render text: e.message, status: 422 
   end
 
   # PATCH/PUT /voters/1
