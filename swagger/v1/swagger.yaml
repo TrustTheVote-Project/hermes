@@ -1,0 +1,29 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/voters/import":
+    post:
+      summary: imprtorts a list of voters
+      tags:
+      - Voters
+      description: Imports a list of voters.
+      consumes:
+      - text/csv
+      parameters:
+      - name: file
+        in: body
+        value: |-
+          first_name,last_name,address,city,zip,state,birth_date
+          Ron,Tsosie,1299 Taylor St,Montgomery,36109,AL,1963-09-28
+          Brandie,Nguyen,9015 Fairview St,Wasilla,99654,AK,1946-12-11
+      responses:
+        '204':
+          description: no content
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

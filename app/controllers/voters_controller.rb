@@ -25,7 +25,6 @@ class VotersController < ApplicationController
   end
 
   def import
-    puts params["file"].read
     Voter.import_from_csv(params["file"].read)
   end
 
