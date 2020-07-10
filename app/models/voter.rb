@@ -9,11 +9,11 @@ class Voter < ApplicationRecord
       if !voter["id"]
         raise InvalidVoterException.new "voters must be registered with an id"
       else
-        voter[:consumer_id] = voter.delete "id"
+        voter["consumer_id"] = voter.delete "id"
         voters << voter
       end
     end
-    self.import voters, on_duplicate_key_update: {conflict_target: [:consumer_id]}
+    self.import voters, on_duplicate_key_update: {conflict_target: ["consumer_id"]}
   end
 end
 
