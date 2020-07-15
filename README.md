@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# hermes
-Provides an API for clients to push "voter registration requests", and pull a "voter record change log"
-=======
 # Voter record change logs
 
 Voter Record Change Logs (VRCLs) are the basis for a voter registration change notification service to voters.
@@ -37,4 +33,3 @@ set up the database: `rake db:setup`
 run the server: `rails s`
 
 run the tests: `rspec spec`
->>>>>>> write read me
