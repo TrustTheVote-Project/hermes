@@ -16,7 +16,7 @@ For now a simple encrypted key is used for api access to this application.
 
 ## Voter registration status service
 
-We have selected [Alloy.us](https://docs.alloy.us/api/) as vendor to provide statuses for the voters we care about. Voters must be registered with Alloy before their status can be queried. Voters are registered on import with Alloy.
+We have selected [Alloy.us](https://docs.alloy.us/api/) as a data partner to provide statuses for the voters that we track. Voter records must be recorded in Alloy's data, before their status can be queried; therefore, each time a voter record is imported into Hermes, Hermes adds that voter record to the list of records that Alloy will include in query results. 
 
 All polls are preempted by a data freshness query to limit api traffic.
 
