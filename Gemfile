@@ -13,7 +13,7 @@ gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
-gem 'capistrano3-puma' 
+gem 'capistrano3-puma'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
