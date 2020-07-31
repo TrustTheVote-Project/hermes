@@ -2,6 +2,9 @@
 
 Voter Record Change Logs (VRCLs) are the basis for a voter registration change notification service to voters.
 
+## Documentation
+[API documentation can be found here](http://ec2-18-220-20-125.us-east-2.compute.amazonaws.com/api-docs/index.html)
+
 ## Basic architecture
 
 This application exposes an api that allows users to upload a bulk csv of voter information. That voter information is stored in a database table (postgres). The [paper-trail](https://github.com/paper-trail-gem/paper_trail) gem is used to automatically calculate changes on that table.
