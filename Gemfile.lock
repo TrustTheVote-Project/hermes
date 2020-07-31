@@ -243,6 +243,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
+  rspec-core
   rspec-rails
   rswag (~> 2.3.0)
 
