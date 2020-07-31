@@ -12,7 +12,7 @@ set :ssh_options, {
   auth_methods: %w[publickey],
   keys: ["/Users/matt/workspace/oset/hermies-dev-key-pair.pem"]
 }
-
+set :rails_env, "production"
 
 # role-based syntax
 # ==================

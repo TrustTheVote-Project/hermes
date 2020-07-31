@@ -8,7 +8,6 @@ gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'paper_trail'
 gem 'http'
-gem 'rswag', '~> 2.3.0'
 gem 'capistrano'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
@@ -16,6 +15,7 @@ gem 'capistrano-rbenv'
 gem 'capistrano3-puma'
 
 group :development, :test do
+  gem 'rswag', '~> 2.3.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'listen'
