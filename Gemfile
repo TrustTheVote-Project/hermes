@@ -13,10 +13,14 @@ gem 'capistrano-rails'
 gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
 gem 'capistrano3-puma'
+gem 'rswag', '~> 2.3.0'
 
 group :development, :test do
-  gem 'rswag', '~> 2.3.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'listen'
+end
+
+group :production do
+  gem 'rspec-core'
 end
