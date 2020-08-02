@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'http'
+require 'fixture_helper'
 
 RSpec.describe ProviderClient, type: :model do
   describe "#get_status_for_voters" do
@@ -10,18 +11,20 @@ RSpec.describe ProviderClient, type: :model do
       Voter.all
     end
 
-    it "registers new voters" do
-      expected_voters = voters.where(provider_id: nil)
-
-      expect(HTTP).to receive(:post).with(/voters/, hash_including(body: expected_voters.to_json))
-      ProviderClient.get_status_for_voters(voters)
+    it "updates voters with provider ids" do
+      response_json = read_fixture('alloy/verify')
+      expect(voters.count).to eq 5
+      expect(ProviderClient).to receive(:provider_get).with(/verify/, anything).at_least(:once).and_return(OpenStruct.new({body: response_json}))
+      expect(ProviderClient).to receive(:provider_get).with(/voters/, anything).at_least(:once).and_return(OpenStruct.new({body: response_json}))
+      expect{ProviderClient.get_status_for_voters(voters)}.to change {Voter.where(provider_id: nil).count}.to(0)
     end
 
-    it "returns the voters with the updated status based on the response" do
-      pending
-      allow(HTTP).to_recieve(:post).and_return(response_json)
-
-      expect(ProviderClient.get_status_for_voters(voters)).to eq expected_voters
+    it "updates voters with statuses" do
+      response_json = read_fixture('alloy/verify')
+      expect(voters.count).to eq 5
+      expect(ProviderClient).to receive(:provider_get).with(/verify/, anything).at_least(:once).and_return(OpenStruct.new({body: response_json}))
+      expect(ProviderClient).to receive(:provider_get).with(/voters/, anything).at_least(:once).and_return(OpenStruct.new({body: response_json}))
+      expect{ProviderClient.get_status_for_voters(voters)}.to change {Voter.where(registration_status: nil).count}.to(0)
     end
   end
 

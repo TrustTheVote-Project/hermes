@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_012651) do
+ActiveRecord::Schema.define(version: 2020_08_02_023906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_012651) do
     t.string "consumer_id"
     t.string "provider_id"
     t.index ["consumer_id"], name: "index_voters_on_consumer_id", unique: true
-    t.index ["provider_id"], name: "index_voters_on_provider_id", unique: true
+    t.index ["provider_id"], name: "index_voters_on_provider_id"
   end
 
 end

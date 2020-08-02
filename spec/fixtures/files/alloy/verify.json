@@ -1,0 +1,18 @@
+{
+    "api_version": "v1",
+    "data": {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "first_name": "George",
+        "middle_name": "",
+        "last_name": "Washington",
+        "suffix": "",
+        "address": "3200 Mount Vernon",
+        "city": "Mt Vernon",
+        "state": "VA",
+        "zip": "22121",
+        "birth_date": "1732-02-22",
+        "phone_num": "555-555-5555",
+        "submitted_registration_date": "1732-02-22",
+        "registration_status": "Active"
+    }
+}
