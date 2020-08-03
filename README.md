@@ -3,7 +3,7 @@
 Voter Record Change Logs (VRCLs) are the basis for a voter registration change notification service to voters.
 
 ## Documentation
-[API documentation can be found here](http://ec2-18-220-20-125.us-east-2.compute.amazonaws.com/api-docs/index.html)
+[API documentation can be found here](https://hermes.demo.trustthevote.org/api-docs/index.html)
 
 ## Basic architecture
 
