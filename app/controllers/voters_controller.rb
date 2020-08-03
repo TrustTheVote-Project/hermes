@@ -1,5 +1,6 @@
 class VotersController < ApplicationController
   before_action :set_voter, only: [:show, :update, :destroy]
+  before_action :authenticate
 
   # GET /voters
   def index
