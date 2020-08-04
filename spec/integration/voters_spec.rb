@@ -15,9 +15,18 @@ describe 'Voters API' do
                   <tr><td>Peggy</td><td>Lee</td><td>5737 Homestead Rd</td><td>Tucson</td><td align="right">85718</td><td>AZ</td><td>1993-11-26</td><td align="right">3</td></tr></tbody></table>'
       consumes 'application/octet-stream'
       parameter name: :file, type: :file,  description: "the csv of voter data"
+      parameter({
+        :in => :header,
+        :type => :string,
+        :name => :Authorization,
+        :required => true,
+        :description => 'Client token'
+      })
 
       response '204', 'no content' do
         let(:file) { fixture_file_upload('files/sampe_voters_import.csv', 'text/csv') }
+        let(:Authorization) { 'Bearer ' + User.create({token: "token"}).token }
+
         run_test!
       end
     end

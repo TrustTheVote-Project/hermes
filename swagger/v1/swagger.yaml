@@ -21,6 +21,12 @@ paths:
         description: the csv of voter data
         schema:
           type: file
+      - in: header
+        name: Authorization
+        required: true
+        description: Client token
+        schema:
+          type: string
       responses:
         '204':
           description: no content
