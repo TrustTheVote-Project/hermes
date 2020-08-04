@@ -13,7 +13,7 @@ class Voter < ApplicationRecord
         voters << voter
       end
     end
-    voters = self.import voters, on_duplicate_key_update: {conflict_target: ["consumer_id"]}
+    voters = self.import voters, on_duplicate_key_update: {conflict_target: "consumer_id", columns: [:last_name]}
     
     ProviderClient.get_status_for_voters(Voter.find(voters.ids))
   end
