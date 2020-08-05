@@ -14,6 +14,7 @@ class ProviderClient
         data = JSON.parse(response.body)["data"]
         voter.provider_id = data["id"]
       else
+        provider_update "#{uri}/voters/#{voter.provider_id}", voter.slice(alloy_params).merge({"id" => voter.provider_id}).to_json
         response = provider_get "#{uri}/voters/#{voter.provider_id}", {}
         data = JSON.parse(response.body)["data"]
       end
@@ -27,5 +28,9 @@ class ProviderClient
 
   def self.provider_get(url, params)
     HTTP.basic_auth(:user => ENV["PROVIDER_TOKEN"], :pass => ENV["PROVIDER_SECRET"]).get url, {params: params}
+  end
+
+  def self.provider_update(url, params)
+    HTTP.basic_auth(:user => ENV["PROVIDER_TOKEN"], :pass => ENV["PROVIDER_SECRET"]).post url, {body: params}
   end
 end

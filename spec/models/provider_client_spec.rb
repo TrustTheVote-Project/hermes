@@ -11,6 +11,10 @@ RSpec.describe ProviderClient, type: :model do
       Voter.all
     end
 
+    before do 
+      allow(ProviderClient).to receive(:provider_update)
+    end
+
     it "updates voters with provider ids" do
       response_json = read_fixture('alloy/verify')
       expect(voters.count).to eq 5

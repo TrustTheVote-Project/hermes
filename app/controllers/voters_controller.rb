@@ -56,3 +56,7 @@ class VotersController < ApplicationController
       params.require(:voter).permit(:fist_name, :last_name, :address, :birth_date, :state, :city, :zip, :registaration_status, :permanent_absentee, :file)
     end
 end
+
+
+class InvalidVoterException < StandardError
+end
