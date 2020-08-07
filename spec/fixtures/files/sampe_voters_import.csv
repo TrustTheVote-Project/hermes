@@ -1,10 +1,10 @@
-first_name,last_name,address,city,zip,state,birth_date,id
-Ron,Tsosie,1299 Taylor St,Montgomery,36109,AL,1963-09-28,1
-Brandie,Nguyen,9015 Fairview St,Wasilla,99654,AK,1946-12-11,2
-Peggy,Lee,5737 Homestead Rd,Tucson,85718,AZ,1993-11-26,3
-Russell,Kim,5079 E Pecan St,Little Rock,72209,AK,1989-10-17,4
-Louella,Williams,568 Forest Ln,Santa Monica,90403,CA,1955-01-20,5
-Irene,Johnson,8027 Hillcrest Rd,Pueblo,81001,CO,1957-11-05,6
-Rebecca,Jones,8135 Woodland St,Vernon Rockville,6066,CT,1946-12-22,7
-Terrence,Brown,2969 Pecan Acres Ln,Washington,20020,DC,1963-05-05,8
-Mia,Jackson,1067 Oak Lawn Ave,Bear,19701,DE,1996-12-21,9
+first_name,middle_name,last_name,address,city,zip,state,birth_date,id
+Ron,Louis,Tsosie,1299 Taylor St,Montgomery,36109,AL,1963-09-28,1
+Brandie,Faux,Nguyen,9015 Fairview St,Wasilla,99654,AK,1946-12-11,2
+Peggy,Jackie,Lee,5737 Homestead Rd,Tucson,85718,AZ,1993-11-26,3
+Russell,Abdul,Kim,5079 E Pecan St,Little Rock,72209,AK,1989-10-17,4
+Louella,Sarah,Williams,568 Forest Ln,Santa Monica,90403,CA,1955-01-20,5
+Irene,,Johnson,8027 Hillcrest Rd,Pueblo,81001,CO,1957-11-05,6
+Rebecca,F.,Jones,8135 Woodland St,Vernon Rockville,6066,CT,1946-12-22,7
+Terrence,VonTrap,Brown,2969 Pecan Acres Ln,Washington,20020,DC,1963-05-05,8
+Mia,,Jackson,1067 Oak Lawn Ave,Bear,19701,DE,1996-12-21,9

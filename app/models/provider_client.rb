@@ -1,10 +1,6 @@
 class ProviderClient
   def self.get_status_for_voters(voters)
-    new_voters = voters.select{|v| v.provider_id == nil}
-
-    new_voters.map{ |v| v.attributes.delete(:id)}
-
-    alloy_params =['first_name', 'last_name', 'address', 'city', 'state', 'zip']
+    alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
 
     uri = "#{ENV["PROVIDER_URL"]}"
 
