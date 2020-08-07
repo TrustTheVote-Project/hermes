@@ -24,14 +24,28 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
-            }
-          }
+          url: 'https://hermes.demo.trustthevote.org'
         }
-      ]
+      ],
+      definitions: {
+        voter: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            client_id: {type: 'string'},
+            first_name: { type: 'string' },
+            middle_name: { type: 'string' },
+            last_name: { type: 'string' },
+            address: { type: 'string' },
+            city: { type: 'string' },
+            state: { type: 'string' },
+            zip: { type: 'string' },
+            birth_date: { type: 'string' },
+            registration_status: { type: 'string' },
+          },
+          required: [ 'id' ]
+        },
+      }
     }
   }
 
