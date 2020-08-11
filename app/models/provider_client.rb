@@ -2,7 +2,7 @@ class ProviderClient
   def self.get_status_for_voters(voters)
     alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
 
-    uri = "#{ENV["PROVIDER_URL"]}"
+    uri = "#{Rails.application.credentials[:PROVIDER_URL]}"
 
     voters.each do |voter|
       if !voter.provider_id
@@ -23,10 +23,10 @@ class ProviderClient
   private
 
   def self.provider_get(url, params)
-    HTTP.basic_auth(:user => ENV["PROVIDER_TOKEN"], :pass => ENV["PROVIDER_SECRET"]).get url, {params: params}
+    HTTP.basic_auth(:user => Rails.application.credentials[:PROVIDER_TOKEN], :pass => Rails.application.credentials[:PROVIDER_SECRET]).get url, {params: params}
   end
 
   def self.provider_update(url, params)
-    HTTP.basic_auth(:user => ENV["PROVIDER_TOKEN"], :pass => ENV["PROVIDER_SECRET"]).post url, {body: params}
+    HTTP.basic_auth(:user => Rails.application.credentials[:PROVIDER_TOKEN], :pass => Rails.application.credentials[:PROVIDER_SECRET]).post url, {body: params}
   end
 end
