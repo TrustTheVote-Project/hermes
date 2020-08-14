@@ -24,6 +24,10 @@ module Hermes
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.active_job.queue_adapter = :async
+    config.active_job.queue_adapter = ActiveJob::QueueAdapters::AsyncAdapter.new \
+      min_threads: 1,
+      max_threads: 2 * Concurrent.processor_count,
+      idletime: 600.seconds
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
