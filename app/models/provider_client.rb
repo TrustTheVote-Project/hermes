@@ -16,6 +16,17 @@ class ProviderClient
   def self.verify_voters(voters)
     response = provider_get("voters", {})
     data = JSON.parse(response.body)["data"]["items"]
+    update_voters(data, voters)
+  end
+
+  def self.get_voter_updates()
+    response = provider_get("voters", {within_days: 1})
+    data = JSON.parse(response.body)["data"]["items"]
+    voters = Voter.where{|v| data.map{|i| i["id"]}.includes(v.provider_id)}
+    update_voters(data, voters)
+  end
+
+  def self.update_voters(data, voters)
     voters.each do |voter|
       voter_data = data.detect{|v| v["id"] == voter.provider_id}
       voter.update!(registration_status: voter_data["registration_status"]) if voter_data
