@@ -1,11 +1,11 @@
 class ProviderClient
-  uri = "#{Rails.application.credentials[:PROVIDER_URL]}"
+  URI = "#{Rails.application.credentials[:PROVIDER_URL]}"
 
   def self.register_voters(voters)
     alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
     body = voters.map {|v| {"id" => v.provider_id}.merge(v.slice(alloy_params))}
 
-    response = provider_update("voters", body)
+    response = provider_update("voters", body.to_json)
     data = JSON.parse(response.body)["data"]["items"]
     data.zip(voters).each do |resp, voter|
       voter.provider_id = resp['id']
@@ -25,10 +25,17 @@ class ProviderClient
   private
 
   def self.provider_get(url, params)
-    HTTP.basic_auth(:user => Rails.application.credentials[:PROVIDER_TOKEN], :pass => Rails.application.credentials[:PROVIDER_SECRET]).get "#{uri}/#{url}", {params: params}
+    provider_auth.get "#{URI}/#{url}", {params: params}
   end
 
   def self.provider_update(url, params)
-    HTTP.basic_auth(:user => Rails.application.credentials[:PROVIDER_TOKEN], :pass => Rails.application.credentials[:PROVIDER_SECRET]).post "#{uri}/#{url}", {body: params}
+    provider_auth.post "#{URI}/#{url}", {body: params}
+  end
+
+  def self.provider_auth()
+    HTTP.basic_auth(
+      :user => Rails.application.credentials[:PROVIDER_TOKEN],
+      :pass => Rails.application.credentials[:PROVIDER_SECRET]
+      )
   end
 end
