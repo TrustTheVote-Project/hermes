@@ -1,21 +1,15 @@
 class ProviderClient
-  def self.get_status_for_voters(voters)
+  def self.register_voters(voters)
     alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
 
     uri = "#{Rails.application.credentials[:PROVIDER_URL]}"
 
-    voters.each do |voter|
-      if !voter.provider_id
-        response = provider_get("#{uri}/verify", voter.slice(alloy_params))
-        data = JSON.parse(response.body)["data"]
-        voter.provider_id = data["id"]
-      else
-        provider_update "#{uri}/voters/#{voter.provider_id}", voter.slice(alloy_params).merge({"id" => voter.provider_id}).to_json
-        response = provider_get "#{uri}/voters/#{voter.provider_id}", {}
-        data = JSON.parse(response.body)["data"]
-      end
+    body = voters.map {|v| {"id" => v.provider_id}.merge(v.slice(alloy_params))}
 
-      voter.registration_status = data["registration_status"]
+    response = provider_update("#{uri}/voters", body)
+    data = JSON.parse(response.body)["data"]["items"]
+    data.zip(voters).each do |resp, voter|
+      voter.provider_id = resp['id']
       voter.save!
     end
   end

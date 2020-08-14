@@ -26,6 +26,10 @@ describe 'Voters API' do
       response '204', 'no content' do
         let(:file) { fixture_file_upload('files/sampe_voters_import.csv', 'text/csv') }
         let(:Authorization) { 'Bearer ' + User.create({token: "token"}).token }
+        before do
+          allow(ProviderClient).to receive(:register_voters).and_return(nil)
+        end
+
 
         run_test!
       end
@@ -63,10 +67,13 @@ describe 'Voters API' do
         :required => true,
         :description => 'Client token'
       })
+      parameter(:name => :id, :in => :path, :type => :string)
 
       response '200', 'voter record' do
         schema '$ref' => '#/definitions/voter'
         let(:Authorization) { 'Bearer ' + User.create({token: "token"}).token }
+        let(:id) {Voter.create().id}
+
         run_test!
       end
     end

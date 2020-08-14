@@ -4,7 +4,7 @@ RSpec.describe Voter, type: :model do
   describe "#import_from_csv" do
     let(:file) { file_fixture("sampe_voters_import.csv").read }
     before do
-      allow(ProviderClient).to receive(:get_status_for_voters).and_return(nil)
+      allow(ProviderClient).to receive(:register_voters).and_return(nil)
     end
 
     it 'creates models for each voter' do
