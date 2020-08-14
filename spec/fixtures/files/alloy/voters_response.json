@@ -1,0 +1,71 @@
+{
+    "api_version": "v1",
+    "data": {
+        "items": [
+            {
+                "registration_status": "Active",
+                "registration_date": null,
+                "registration_changed_date": null,
+                "created_date": "2020-08-11T00:34:21.275398Z",
+                "updated_date": "2020-08-11T00:34:21.275398Z",
+                "last_updated_date": null,
+                "id": "00000000-0000-0000-0000-000000000000",
+                "alloy_person_id": null,
+                "first_name": "IRENE",
+                "middle_name": "",
+                "last_name": "JOHNSON",
+                "suffix": "",
+                "birth_date": "",
+                "zip": "81001",
+                "address": "8027 HILLCREST RD",
+                "city": "PUEBLO",
+                "state": "CO",
+                "phone_num": "",
+                "submitted_registration_date": ""
+            },
+            {
+                "registration_status": "Purged",
+                "registration_date": null,
+                "registration_changed_date": null,
+                "created_date": "2020-08-11T00:34:21.275398Z",
+                "updated_date": "2020-08-11T00:34:21.275398Z",
+                "last_updated_date": null,
+                "id": "00000000-0000-0000-0000-000000000001",
+                "alloy_person_id": null,
+                "first_name": "TERRENCE",
+                "middle_name": "",
+                "last_name": "BROWN",
+                "suffix": "",
+                "birth_date": "",
+                "zip": "20020",
+                "address": "2969 PECAN ACRES LN",
+                "city": "WASHINGTON",
+                "state": "DC",
+                "phone_num": "",
+                "submitted_registration_date": ""
+            },
+            {
+                "registration_status": "Removed",
+                "registration_date": null,
+                "registration_changed_date": null,
+                "created_date": "2020-08-11T00:34:21.275398Z",
+                "updated_date": "2020-08-11T00:34:21.275398Z",
+                "last_updated_date": null,
+                "id": "fd31b678-d542-4798-9c0c-cab86fb787aa",
+                "alloy_person_id": null,
+                "first_name": "MIA",
+                "middle_name": "",
+                "last_name": "JACKSON",
+                "suffix": "",
+                "birth_date": "",
+                "zip": "19701",
+                "address": "1067 OAK LAWN AVE",
+                "city": "BEAR",
+                "state": "DE",
+                "phone_num": "",
+                "submitted_registration_date": ""
+            }
+        ]
+    },
+    "error": null
+}

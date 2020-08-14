@@ -26,7 +26,9 @@ class Voter < ApplicationRecord
     end
     voters = self.import voters, on_duplicate_key_update: {conflict_target: "consumer_id", columns: [:first_name, :middle_name, :last_name, :city, :state, :zip, :address, :birth_date]}
     
-    ProviderClient.register_voters(Voter.find(voters.ids))
+    voters = Voter.find(voters.ids)
+    ProviderClient.register_voters(voters)
+    ProviderClient.verify_voters(voters)
   end
 end
 

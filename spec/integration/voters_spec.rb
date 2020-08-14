@@ -28,6 +28,7 @@ describe 'Voters API' do
         let(:Authorization) { 'Bearer ' + User.create({token: "token"}).token }
         before do
           allow(ProviderClient).to receive(:register_voters).and_return(nil)
+          allow(ProviderClient).to receive(:verify_voters).and_return(nil)
         end
 
 
