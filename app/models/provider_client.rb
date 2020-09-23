@@ -14,14 +14,12 @@ class ProviderClient
   end
 
   def self.verify_voters(voters)
-    response = provider_get("voters", {})
-    data = JSON.parse(response.body)["data"]["items"]
+    data = provider_get("voters", {})
     update_voters(data, voters)
   end
 
   def self.get_voter_updates()
-    response = provider_get("voters", {within_days: 1})
-    data = JSON.parse(response.body)["data"]["items"]
+    data = provider_get("voters", {within_days: 1})
     voters = Voter.where{|v| data.map{|i| i["id"]}.includes(v.provider_id)}
     update_voters(data, voters)
   end
@@ -36,7 +34,18 @@ class ProviderClient
   private
 
   def self.provider_get(url, params)
-    provider_auth.get "#{URI}/#{url}", {params: params}
+    page_size = 1000
+    voters_recieved = 1000
+    offset = 0
+    items = []
+    until voters_recieved < 1000
+      paginated_params = params.merge({page_size: page_size, offset:offset})
+      provider_auth.get "#{URI}/#{url}", {params: params}
+      received = JSON.parse(response.body)["data"]["items"]
+      voters_recieved = received.length
+      items << received
+    end
+    items
   end
 
   def self.provider_update(url, params)
