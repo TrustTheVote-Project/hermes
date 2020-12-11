@@ -26,7 +26,7 @@ class ProviderClient
 
   def self.update_voters(data, voters)
     voters.each do |voter|
-      voter_data = data.detect{|v| v["id"] == voter.provider_id}
+      voter_data = data.flatten.detect{|v| v["id"] == voter.provider_id}
       voter.update!(registration_status: voter_data["registration_status"]) if voter_data
     end
   end
@@ -38,9 +38,9 @@ class ProviderClient
     voters_recieved = 1000
     offset = 0
     items = []
-    until voters_recieved < 1000
+    until voters_recieved < page_size
       paginated_params = params.merge({page_size: page_size, offset:offset})
-      provider_auth.get "#{URI}/#{url}", {params: params}
+      response = provider_auth.get "#{URI}/#{url}", {params: params}
       received = JSON.parse(response.body)["data"]["items"]
       voters_recieved = received.length
       items << received

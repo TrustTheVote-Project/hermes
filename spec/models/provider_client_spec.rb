@@ -4,30 +4,24 @@ require 'fixture_helper'
 
 RSpec.describe ProviderClient, type: :model do
   describe "#register_voters" do
-    let (:voters) do
-      2.times do |i|
-        i % 2 == 0 ? Voter.create : Voter.create(provider_id: "00000000-0000-0000-0000-000000000000")
-      end
-      Voter.all
-    end
-
     before do 
-      allow(ProviderClient).to receive(:provider_update)
+      Voter.create 
+      Voter.create(provider_id: "00000000-0000-0000-0000-000000000000")
     end
 
     it "updates voters with provider ids" do
       response_json = read_fixture('alloy/voters_post_response')
-      expect(voters.count).to eq 2
-      expect(ProviderClient).to receive(:provider_update).with(/voters/, anything).and_return(OpenStruct.new({body: response_json}))
-      expect{ProviderClient.register_voters(voters)}.to change {Voter.where(provider_id: nil).count}.to(0)
+      expect(Voter.count).to eq 2
+      expect_any_instance_of(HTTP::Client).to receive(:post).and_return(OpenStruct.new({body: response_json}))
+      expect{ProviderClient.register_voters(Voter.all)}.to change {Voter.where(provider_id: nil).count}.to(0)
     end
     
     it "updates voters with statuses" do
       response_json = read_fixture('alloy/voters_response')
-      expect(voters.count).to eq 2
+      expect(Voter.where(registration_status: nil).count).to eq 2
 
-      expect(ProviderClient).to receive(:provider_get).with(/voters/, anything).and_return(OpenStruct.new({body: response_json}))
-      expect{ProviderClient.verify_voters(voters)}.to change {Voter.where(registration_status: nil).count}
+      expect_any_instance_of(HTTP::Client).to receive(:get).and_return(OpenStruct.new({body: response_json}))
+      expect{ProviderClient.verify_voters(Voter.all)}.to change {Voter.where(registration_status: nil).count}
     end
   end
 end

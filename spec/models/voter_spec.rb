@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Voter, type: :model do
   describe "#import_from_csv" do
-    let(:file) { file_fixture("sampe_voters_import.csv").read }
+    let(:file) { file_fixture("voteready_registrants_2020_11_06_19_01-2020_12_03_14_00.csv").read }
     before do
       allow(ProviderClient).to receive(:register_voters).and_return(nil)
       allow(ProviderClient).to receive(:verify_voters).and_return(nil)
@@ -18,10 +18,10 @@ RSpec.describe Voter, type: :model do
     end
 
     it 'updates existing voters' do
-      update = file.gsub('Johnson', 'Irving')
+      update = file.gsub('Mekelburg', 'Irving')
       Voter.import_from_csv(file)
 
-      expect{ Voter.import_from_csv(update) }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(1)
+      expect{ Voter.import_from_csv(update) }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(2)
     end
   end
 end
