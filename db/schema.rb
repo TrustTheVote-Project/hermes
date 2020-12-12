@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_165243) do
+ActiveRecord::Schema.define(version: 2020_12_12_232138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 2020_08_07_165243) do
     t.string "consumer_id"
     t.string "provider_id"
     t.string "middle_name"
+    t.string "email_address"
+    t.string "phone"
+    t.string "phone_type"
+    t.string "partner_name"
+    t.string "address_line_2"
+    t.boolean "is_previous"
     t.index ["consumer_id"], name: "index_voters_on_consumer_id", unique: true
     t.index ["provider_id"], name: "index_voters_on_provider_id"
   end
