@@ -13,11 +13,13 @@ class Voter < ApplicationRecord
     "Removed" => 8
   }
 
-  def self.import_from_csv(file)
+  def self.import_from_csv(file, states: [])
     voters = []
     csv = CSV.new(file, headers: true)
     csv.each do |row|
-      voters << format_voters(row.to_h)
+      hash = row.to_h
+      next unless states.empty? || states.include?(hash["home_state_abbrev"].to_s)
+      voters << format_voters(hash)
     end
     voters = self.import voters, on_duplicate_key_update: {conflict_target: "consumer_id", columns: [:first_name, :middle_name, :last_name, :city, :state, :zip, :address, :birth_date]}
     

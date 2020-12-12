@@ -21,7 +21,14 @@ RSpec.describe Voter, type: :model do
       update = file.gsub('Mekelburg', 'Irving')
       Voter.import_from_csv(file)
 
-      expect{ Voter.import_from_csv(update) }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(2)
+      expect{ Voter.import_from_csv(update) }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(3)
+    end
+
+    it 'filters to specified states' do
+      update = file.gsub('Mekelburg', 'Irving')
+      Voter.import_from_csv(file)
+
+      expect{ Voter.import_from_csv(update, states: "GA") }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(1)
     end
   end
 end
