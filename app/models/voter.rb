@@ -30,17 +30,22 @@ class Voter < ApplicationRecord
   def self.format_voters(voter) 
     raise InvalidVoterException.new "voters must be registered with an id" unless voter["id"] || voter["uid"]
     
-    {
+    voter_hash = {
       first_name: voter["first_name"],
       middle_name: voter["middle_name"],
       last_name: voter["last_name"],
       address: voter["address"] || voter["home_address"],
+      address_line_2: voter["address_line_2"] || voter["home_unit"],
       birth_date: format_birth_date(voter),
       state: voter["state"] || voter["home_state_abbrev"],
       city: voter["city"] || voter["home_city"],
       zip: voter["zip"] || voter["home_zip_code"],
       permanent_absentee: voter["permanent_absentee"],
-      consumer_id: voter["uid"] || voter["id"]
+      consumer_id: voter["uid"] || voter["id"],
+      email_address: voter["email_address"],
+      phone: voter["phone"],
+      phone_type: voter["phone_type"],
+      partner_name: voter["partner_name"],
     }
   end
   
