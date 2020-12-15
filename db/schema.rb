@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_232138) do
+ActiveRecord::Schema.define(version: 2020_12_15_030851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_232138) do
     t.string "zip"
     t.integer "registration_status"
     t.boolean "permanent_absentee"
-    t.datetime "created_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "consumer_id"
     t.string "provider_id"

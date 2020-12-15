@@ -18,17 +18,22 @@ RSpec.describe Voter, type: :model do
     end
 
     it 'updates existing voters' do
-      update = file.gsub('Mekelburg', 'Irving')
+      update = file.gsub('Smith', 'Irving')
       Voter.import_from_csv(file)
 
-      expect{ Voter.import_from_csv(update) }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(3)
+      sleep 1
+      expect{ Voter.import_from_csv(update) }.to change{ Voter.count{|v| v.last_name == "Irving" } }
     end
 
     it 'filters to specified states' do
-      update = file.gsub('Mekelburg', 'Irving')
-      Voter.import_from_csv(file)
+      expect{ Voter.import_from_csv(file, states: "GA") }.to change{ Voter.count }.from(0).to(1)
+    end
 
-      expect{ Voter.import_from_csv(update, states: "GA") }.to change{ Voter.where(last_name: "Irving").count }.from(0).to(1)
+    it 'Creates history for records' do
+      Voter.import_from_csv(file, states: "GA")
+
+      expect(Voter.last.versions.length).to be 2
+      expect(Voter.last.first_name).to eq "Alex"
     end
   end
 end
