@@ -80,7 +80,6 @@ test:
 #
 staging:
   <<: *default
-  username: postgres
   database: hermes_staging
 
 production:
