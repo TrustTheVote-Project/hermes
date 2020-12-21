@@ -78,6 +78,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: hermes_staging
+
 production:
   adapter: postgresql
   encoding: utf8
