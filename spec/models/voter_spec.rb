@@ -35,5 +35,14 @@ RSpec.describe Voter, type: :model do
       expect(Voter.last.versions.length).to be 2
       expect(Voter.last.first_name).to eq "Alex"
     end
+
+    it 'posts changes to sns' do
+      allow(Rails.application.credentials).to receive(:config).and_return({test: {aws: true}})
+      allow(Rails.application.credentials).to receive("test").and_return({aws: {:sns_region => "region", access_key_id: 123, secret: 456}})
+      expect_any_instance_of(Aws::SNS::Client).to receive(:publish)
+
+      v = Voter.create
+      v.update(registration_status: "Active")
+    end
   end
 end

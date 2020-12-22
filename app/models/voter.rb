@@ -3,6 +3,8 @@ require 'csv'
 class Voter < ApplicationRecord
   has_paper_trail
 
+  after_commit :notify_change, if: :saved_change_to_registration_status?
+
   enum registration_status: { 
     "Active" => 0,
     "Cancelled" => 1,
@@ -87,5 +89,31 @@ class Voter < ApplicationRecord
   def self.format_birth_date(voter)
     return voter["birth_date"] if voter["birth_date"]
     "#{voter["date_of_birth_year"]}-#{voter["date_of_birth_month"]}-#{voter["date_of_birth_day"]}"
+  end
+
+  def notify_change
+    if Rails.application.credentials.config.dig(Rails.env.to_sym, :aws)
+      aws_credentials = Aws::Credentials.new(aws_cred(:access_key_id), aws_cred(:secret_access_key))
+
+      sns = Aws::SNS::Client.new(
+        credentials: aws_credentials,
+        region: aws_cred(:sns_region)
+      )
+
+      sns.publish(
+        topic_arn: aws_cred(:sns_topic),
+        message: "The voter #{self.consumer_id} was updated:
+        new_state:
+        #{self.attributes}
+
+        old_state:
+        #{self.versions.last.object}
+        "
+        )
+    end
+  end
+
+  def aws_cred(name)
+    Rails.application.credentials.send(Rails.env)&.dig(:aws, name)
   end
 end
