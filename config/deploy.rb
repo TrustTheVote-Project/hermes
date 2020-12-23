@@ -7,12 +7,12 @@ set :puma_conf, "/var/www/hermes/shared/config/puma.rb"
 set :application, 'hermes'
 set :use_sudo, true
 
-set :whenever_command, "bundle exec whenever"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/hermes"
+set :whenever_command, "bundle exec whenever"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
