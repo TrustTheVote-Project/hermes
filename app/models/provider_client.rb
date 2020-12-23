@@ -1,5 +1,5 @@
 class ProviderClient
-  URI = "#{Rails.application.credentials[:PROVIDER_URL]}"
+  URI = "#{Rails.application.credentials.config[Rails.env.to_sym][:PROVIDER_URL]}"
 
   def self.register_voters(voters)
     alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
@@ -7,7 +7,7 @@ class ProviderClient
 
     response = provider_update("voters", body.to_json)
     data = JSON.parse(response.body)["data"]["items"]
-    data.zip(voters).each do |resp, voter|
+    data&.zip(voters)&.each do |resp, voter|
       voter.provider_id = resp['id']
       voter.save!
     end
@@ -54,8 +54,8 @@ class ProviderClient
 
   def self.provider_auth()
     HTTP.basic_auth(
-      :user => Rails.application.credentials[:PROVIDER_TOKEN],
-      :pass => Rails.application.credentials[:PROVIDER_SECRET]
+      :user => Rails.application.credentials.config[Rails.env.to_sym][:PROVIDER_TOKEN],
+      :pass => Rails.application.credentials.config[Rails.env.to_sym][:PROVIDER_SECRET]
       )
   end
 end

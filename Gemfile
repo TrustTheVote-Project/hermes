@@ -18,6 +18,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rbenv'
 gem 'capistrano3-puma'
 gem 'rswag', '~> 2.3.0'
+gem 'whenever'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
