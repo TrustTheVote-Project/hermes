@@ -28,7 +28,8 @@ class ProviderClient
     voters.each do |voter|
       voter_data = data.flatten.detect{|v| v["id"] == voter.provider_id}
       voter.update!(registration_status: voter_data["registration_status"]) if voter_data
-      voter.update!(registration_status: Voter.registration_statuses.keys.sample) if Rails.env == "staging"
+      # TODO: remove this line. it is an easter egg.
+      voter.update!(registration_status: Voter.registration_statuses.keys.sample) if Rails.env.to_s == "staging"
     end
   end
 
