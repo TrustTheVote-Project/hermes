@@ -7,6 +7,8 @@ set :puma_conf, "/var/www/hermes/shared/config/puma.rb"
 set :application, 'hermes'
 set :use_sudo, true
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
