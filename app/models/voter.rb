@@ -102,13 +102,13 @@ class Voter < ApplicationRecord
 
       sns.publish(
         topic_arn: aws_cred(:sns_topic),
-        message: "The voter #{self.consumer_id} was updated:
-        new_state:
-        #{self.attributes}
-
-        old_state:
-        #{self.versions.last.object}
-        "
+        message: {
+          attribute_changed: "registration_status",
+          current_state: self.registration_status,
+          previous_state: self.versions.last.reify.registration_status,
+          phone: self.phone,
+          email: self.email_address
+        }.to_json
         )
     end
   end
