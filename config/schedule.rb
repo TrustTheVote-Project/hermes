@@ -1,4 +1,3 @@
-
 set :chronic_options, hours24: true
 
 # By default this would run the job every day at 3am
