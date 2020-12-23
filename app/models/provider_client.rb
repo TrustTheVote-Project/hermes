@@ -1,5 +1,5 @@
 class ProviderClient
-  URI = "#{Rails.application.credentials.config[Rails.env.to_sym][:PROVIDER_URL]}"
+  URI = "#{Rails.application.credentials.config.dig(Rails.env.to_sym, :PROVIDER_URL)}"
 
   def self.register_voters(voters)
     alloy_params =['first_name', 'middle_name', 'last_name', 'address', 'city', 'state', 'zip']
@@ -28,6 +28,7 @@ class ProviderClient
     voters.each do |voter|
       voter_data = data.flatten.detect{|v| v["id"] == voter.provider_id}
       voter.update!(registration_status: voter_data["registration_status"]) if voter_data
+      voter.update!(registration_status: Voter.registration_statuses.keys.sample) if Rails.env == "staging"
     end
   end
 
