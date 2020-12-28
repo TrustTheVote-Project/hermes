@@ -12,10 +12,11 @@ class ImportVotersJob < ApplicationJob
         region: aws_cred(:s3_region)
       )
 
-      s3.list_objects_v2(bucket: "rtv-to-voteready").contents.each do |object| 
+      s3.list_objects_v2(bucket: "rtv-to-voteready").contents.each do |object|
+        next unless object.key.match(/staging/)
         csv = s3.get_object(bucket: "rtv-to-voteready", key: object.key).body
         Voter.import_from_csv(csv)
-        s3.delete_object(bucket: "rtv-to-voteready", key: object.key)
+        # s3.delete_object(bucket: "rtv-to-voteready", key: object.key)
       end
     end
   end
