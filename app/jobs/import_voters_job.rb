@@ -16,7 +16,7 @@ class ImportVotersJob < ApplicationJob
         next unless object.key.match(/staging/)
         csv = s3.get_object(bucket: "rtv-to-voteready", key: object.key).body
         Voter.import_from_csv(csv)
-        # s3.delete_object(bucket: "rtv-to-voteready", key: object.key)
+        s3.delete_object(bucket: "rtv-to-voteready", key: object.key)
       end
     end
   end
