@@ -10,7 +10,7 @@ server 'ec2-18-220-20-125.us-east-2.compute.amazonaws.com', user: 'ec2-user', ro
 set :ssh_options, { 
   forward_agent: true, 
   auth_methods: %w[publickey],
-  keys: ["/Users/matt/workspace/oset/hermies-dev-key-pair.pem"]
+  keys: ["/Users/matt/workspace/oset/hermies-dev-key-pair.pem", "/Users/t/code/oset/hermies-dev-key-pair.pem"]
 }
 set :rails_env, "production"
 

@@ -10,7 +10,7 @@ server 'ec2-18-222-23-91.us-east-2.compute.amazonaws.com', user: 'ubuntu', roles
 set :ssh_options, { 
   forward_agent: true, 
   auth_methods: %w[publickey],
-  keys: ["/Users/matt/workspace/oset/hermies-dev-key-pair.pem"]
+  keys: ["/Users/matt/workspace/oset/hermies-dev-key-pair.pem", "/Users/t/code/oset/hermies-dev-key-pair.pem"]
 }
 set :rails_env, "staging"
 
