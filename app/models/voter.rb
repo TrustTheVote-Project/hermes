@@ -105,6 +105,7 @@ class Voter < ApplicationRecord
         message: {
           attribute_changed: "registration_status",
           current_state: self.registration_status,
+          uid: self.consumer_id,
           previous_state: self.versions.last.reify.registration_status,
           phone: self.phone,
           email: self.email_address
