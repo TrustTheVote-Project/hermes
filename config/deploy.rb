@@ -6,6 +6,7 @@ set :repo_url, "git@github.com:TrustTheVote-Project/hermes.git"
 set :puma_conf, "/var/www/hermes/shared/config/puma.rb"
 set :application, 'hermes'
 set :use_sudo, true
+set :branch, "master"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
