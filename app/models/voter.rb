@@ -5,18 +5,6 @@ class Voter < ApplicationRecord
 
   after_commit :notify_change, if: :saved_change_to_registration_status?
 
-  enum registration_status: { 
-    "Active" => 0,
-    "Cancelled" => 1,
-    "Suspense" => 2,
-    "Purged" => 3,
-    "Inactive" => 4,
-    "Not Reported" => 5,
-    "Provisional" => 6,
-    "Preregistered" => 7,
-    "Removed" => 8
-  }
-
   def self.import_from_csv(file, states: [])
     voters = []
     voters += import_voters(:format_old, file, states)
