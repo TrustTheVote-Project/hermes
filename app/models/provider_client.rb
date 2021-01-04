@@ -42,10 +42,11 @@ class ProviderClient
     items = []
     until voters_recieved < page_size
       paginated_params = params.merge({page_size: page_size, offset:offset})
-      response = provider_auth.get "#{URI}/#{url}", {params: params}
+      response = provider_auth.get "#{URI}/#{url}", {params: paginated_params}
       received = JSON.parse(response.body)["data"]["items"]
       voters_recieved = received.length
       items << received
+      offset += page_size
     end
     items
   end
