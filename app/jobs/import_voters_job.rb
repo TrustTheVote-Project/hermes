@@ -15,7 +15,7 @@ class ImportVotersJob < ApplicationJob
       s3.list_objects_v2(bucket: "rtv-to-voteready").contents.each do |object|
         next unless object.key.include? "#{Rails.env}/"
         csv = s3.get_object(bucket: "rtv-to-voteready", key: object.key).body
-        Voter.import_from_csv(csv)
+        Voter.import_from_csv(csv, ["GA", "VA"])
         s3.delete_object(bucket: "rtv-to-voteready", key: object.key)
       end
     end
