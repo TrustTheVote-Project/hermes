@@ -4,14 +4,16 @@ Voter Record Change Logs (VRCLs) are the basis for a voter registration change n
 
 Notifications are published to an sns toppic with the following schema:
 
-
-{"attribute_changed":"voter field that was updated",
-"current_state":"new state of the voter field",
-"uid":"uuid of the voter",
-"previous_state":"previous state of the voter field",
-"phone":"voter phone number",
-"email":"voter email address"}
-
+```json
+{
+  "attribute_changed":"voter field that was updated",
+  "current_state":"new state of the voter field",
+  "uid":"uuid of the voter",
+  "previous_state":"previous state of the voter field",
+  "phone":"voter phone number",
+  "email":"voter email address"
+}
+```
 ## Documentation
 [API documentation can be found here](https://hermes.demo.trustthevote.org/api-docs/index.html)
 
