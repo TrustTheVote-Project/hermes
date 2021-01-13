@@ -96,7 +96,7 @@ class Voter < ApplicationRecord
               attribute_changed: attr,
               current_state: self.send(attr),
               uid: self.consumer_id,
-              previous_state: saved_changes[attr],
+              previous_state: saved_changes[attr][0],
               phone: self.phone,
               email: self.email_address
             }.to_json
