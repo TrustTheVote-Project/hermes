@@ -88,17 +88,19 @@ class Voter < ApplicationRecord
         region: aws_cred(:sns_region)
       )
 
-      sns.publish(
-        topic_arn: aws_cred(:sns_topic),
-        message: {
-          attribute_changed: "registration_status",
-          current_state: self.registration_status,
-          uid: self.consumer_id,
-          previous_state: self.versions.last.reify.registration_status,
-          phone: self.phone,
-          email: self.email_address
-        }.to_json
-        )
+      if self.versions.last.reify.registration_status do
+        sns.publish(
+          topic_arn: aws_cred(:sns_topic),
+          message: {
+            attribute_changed: "registration_status",
+            current_state: self.registration_status,
+            uid: self.consumer_id,
+            previous_state: self.versions.last.reify.registration_status,
+            phone: self.phone,
+            email: self.email_address
+          }.to_json
+          )
+      end
     end
   end
 
