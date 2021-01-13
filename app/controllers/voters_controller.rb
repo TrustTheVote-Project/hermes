@@ -53,7 +53,7 @@ class VotersController < ApplicationController
 
     # Only allow a trusted parameter "allow list" through.
     def voter_params
-      params.require(:voter).permit(:fist_name, :last_name, :address, :birth_date, :state, :city, :zip, :registration_status, :permanent_absentee, :file)
+      params.require(:voter).permit(Voter.updatable_keys)
     end
 end
 

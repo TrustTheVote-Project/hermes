@@ -3,7 +3,7 @@ require 'csv'
 class Voter < ApplicationRecord
   has_paper_trail
 
-  after_commit :notify_change, if: :saved_change_to_registration_status?
+  after_commit :notify_change, if: :saved_changes?
 
   def self.import_from_csv(file, states: [])
     voters = []
@@ -88,20 +88,26 @@ class Voter < ApplicationRecord
         region: aws_cred(:sns_region)
       )
 
-      if self.versions.last.reify.registration_status do
-        sns.publish(
-          topic_arn: aws_cred(:sns_topic),
-          message: {
-            attribute_changed: "registration_status",
-            current_state: self.registration_status,
-            uid: self.consumer_id,
-            previous_state: self.versions.last.reify.registration_status,
-            phone: self.phone,
-            email: self.email_address
-          }.to_json
-          )
+      for attr in Voter.updatable_keys & saved_changes.keys do
+        if self.versions.last.reify.send(attr)
+          sns.publish(
+            topic_arn: aws_cred(:sns_topic),
+            message: {
+              attribute_changed: attr,
+              current_state: self.send(attr),
+              uid: self.consumer_id,
+              previous_state: saved_changes[attr],
+              phone: self.phone,
+              email: self.email_address
+            }.to_json
+            )
+        end
       end
     end
+  end
+
+  def self.updatable_keys
+    ["fist_name", "last_name", "address", "birth_date", "state", "city", "zip", "registration_status", "permanent_absentee", "file"]
   end
 
   def aws_cred(name)
