@@ -107,7 +107,7 @@ class Voter < ApplicationRecord
   end
 
   def self.updatable_keys
-    ["fist_name", "last_name", "address", "birth_date", "state", "city", "zip", "registration_status", "permanent_absentee", "file", "email", "phone"]
+    ["fist_name", "last_name", "address", "birth_date", "state", "city", "zip", "registration_status", "permanent_absentee", "file", "email_address", "phone"]
   end
 
   def aws_cred(name)
