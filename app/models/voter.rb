@@ -89,7 +89,7 @@ class Voter < ApplicationRecord
       )
 
       for attr in Voter.updatable_keys & saved_changes.keys do
-        if self.versions.last.reify.send(attr)
+        if saved_changes[attr][0] != nil
           sns.publish(
             topic_arn: aws_cred(:sns_topic),
             message: {
